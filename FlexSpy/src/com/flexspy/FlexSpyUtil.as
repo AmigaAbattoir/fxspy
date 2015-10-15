@@ -1,7 +1,7 @@
 package com.flexspy {
    import com.flexspy.imp.ComponentTreeWnd;
    import com.flexspy.imp.Utils;
-   
+
    import flash.display.DisplayObject;
    import flash.display.InteractiveObject;
    import flash.events.ContextMenuEvent;
@@ -9,7 +9,7 @@ package com.flexspy {
    import flash.ui.ContextMenuItem;
    import flash.utils.Dictionary;
    import flash.utils.getQualifiedClassName;
-   
+
    import mx.core.UIComponent;
    import mx.managers.SystemManager;
 
@@ -19,7 +19,7 @@ package com.flexspy {
       public function FlexSpyUtil() {
          contextItemMap = new Dictionary();
       }
-	  
+
       internal static function addContextMenuTo(target:UIComponent):void {
          if (target == null) {
             return;
@@ -48,7 +48,7 @@ package com.flexspy {
 
             result.push(contextItem);
             item = item.parent;
-          	depth = "." + depth;	
+          	depth = "." + depth;
          }
          if (result.length > 0) {
             ContextMenuItem(result[0]).separatorBefore = true;
@@ -85,12 +85,12 @@ package com.flexspy {
 		 var component:InteractiveObject = InteractiveObject(contextItemMap[item]);
 		 var componentRoot: DisplayObject = null;
 		 if ( FlexSpy.drillIntoComponentWhenSelectingFromMenu){
-			 componentRoot =component; 
+			 componentRoot =component;
 			 component = null;
 		 } else {
 			 componentRoot = Utils.getRoot(component);
 		 }
-			 
+
 		 ComponentTreeWnd.show(componentRoot, false, component);
       }
    }
