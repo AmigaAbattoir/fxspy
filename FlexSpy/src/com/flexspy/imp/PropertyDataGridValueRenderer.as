@@ -1,15 +1,17 @@
 /**
- * FlexSpy 1.2
- * 
+ * FlexSpy 1.5
+ *
  * <p>Code released under WTFPL [http://sam.zoy.org/wtfpl/]</p>
  * @author Arnaud Pichery [http://coderpeon.ovh.org]
+ * @author Frédéric Thomas
+ * @author Christopher Pollati
  */
 package com.flexspy.imp {
 	import com.flexspy.FlexSpy;
 	import com.flexspy.event.FlexSpyEvent;
-	
+
 	import flash.events.MouseEvent;
-	
+
 	import mx.containers.Canvas;
 	import mx.controls.Image;
 	import mx.controls.Label;
@@ -20,7 +22,7 @@ package com.flexspy.imp {
 
 		protected var valueLabel: Label;
 		protected var editButton: Image;
-		
+
 		/**
 		 * Constructor
 		 */
@@ -32,11 +34,11 @@ package com.flexspy.imp {
 		protected function onClickEditButton(event: MouseEvent): void {
 			IPropertyEditor(owner.parent).editSelectedCell();
 		}
-		
+
 		public override function set data(value:Object):void {
 			super.data = value;
-		
-			if (value != null) {	
+
+			if (value != null) {
 				var item: PropertyEditorItem = PropertyEditorItem(value);
 				valueLabel.text = item.displayValue;
 				editButton.visible = item.editable;
@@ -45,14 +47,13 @@ package com.flexspy.imp {
 				editButton.visible = false;
 			}
 		}
-		
-		
-		private function onClickLabel( event : MouseEvent ) : void
-		{
+
+
+		private function onClickLabel( event : MouseEvent ) : void  {
 			var flexSpyEvent : FlexSpyEvent = new FlexSpyEvent(FlexSpyEvent.PROPERTY_SELECTED, event, null,data.value, data.displayName);
 			FlexSpy.FlexSpy_Internal::dispatchEvent(flexSpyEvent);
 		}
-		
+
 		protected override function createChildren(): void {
 			super.createChildren();
 			if (valueLabel == null) {
@@ -66,7 +67,7 @@ package com.flexspy.imp {
 				valueLabel.addEventListener(MouseEvent.CLICK, onClickLabel);
 				valueLabel.addEventListener(MouseEvent.DOUBLE_CLICK, onClickEditButton);
 			}
-			
+
 			if (editButton == null) {
 				editButton = new Image();
 				editButton.source = Icons.EDIT;

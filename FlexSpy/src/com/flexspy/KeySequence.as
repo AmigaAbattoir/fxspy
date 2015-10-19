@@ -1,8 +1,10 @@
 /**
- * FlexSpy 1.1
- * 
+ * FlexSpy 1.5
+ *
  * <p>Code released under WTFPL [http://sam.zoy.org/wtfpl/]</p>
  * @author Arnaud Pichery [http://coderpeon.ovh.org]
+ * @author Frédéric Thomas
+ * @author Christopher Pollati
  */
 package com.flexspy {
 	import flash.events.KeyboardEvent;
@@ -18,7 +20,7 @@ package com.flexspy {
 		
 		/**
 		 * Creates a new key sequence associated with the supplied key code and key modifier (Ctrl, Alt and Shift)
-		 * <p>A list of available key code can be found 
+		 * <p>A list of available key code can be found
 		 * <a href="http://msdn2.microsoft.com/en-us/library/ms927178.aspx">here</a>
 		 * </p>
 		 */
@@ -26,7 +28,7 @@ package com.flexspy {
 			_keyCode = keyCode;
 			_ctrlPressed = ctrlPressed;
 			_altPressed = altPressed;
-			_shiftPressed = shiftPressed;			
+			_shiftPressed = shiftPressed;
 		}
 		
 		/**
@@ -34,16 +36,7 @@ package com.flexspy {
 		 * keyboard event
 		 */
 		public function isPressed(event: KeyboardEvent): Boolean {
-			if (event == null)
-				return false;
-							
-			if (event.keyCode != _keyCode)
-				return false;
-
-			if ((_ctrlPressed && !event.ctrlKey) || (_altPressed && !event.altKey) || (_shiftPressed && !event.shiftKey))
-				return false;
-	
-			return true;			
+			return !(event == null || event.keyCode != _keyCode || (_ctrlPressed && !event.ctrlKey) || (_altPressed && !event.altKey) || (_shiftPressed && !event.shiftKey));
 		}
 	}
 }

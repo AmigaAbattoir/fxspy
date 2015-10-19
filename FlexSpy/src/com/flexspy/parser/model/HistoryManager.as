@@ -17,7 +17,7 @@ package com.flexspy.parser.model
 		{
 			historySO = SharedObject.getLocal( soName );
 			history = historySO.data.history as Array;
-			if (history == null ) history = new Array();
+			if (history == null ) history = [];
 			historyPointer = history.length;
 		}
 		

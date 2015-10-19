@@ -1,17 +1,17 @@
 /**
- * FlexSpy 1.2
- * 
+ * FlexSpy 1.5
+ *
  * <p>Code released under WTFPL [http://sam.zoy.org/wtfpl/]</p>
  * @author Arnaud Pichery [http://coderpeon.ovh.org]
+ * @author Frédéric Thomas
+ * @author Christopher Pollati
  */
 package com.flexspy.imp {
-
 	import flash.display.DisplayObject;
-	
+
 	import mx.skins.Border;
 
 	public class ComponentTreeChrome implements IComponentTreeItem {
-		
 		private var _children: Array;
 		private var _parent: IComponentTreeItem;
 
@@ -19,33 +19,33 @@ package com.flexspy.imp {
 			_children = kids;
 			_parent = parent;
 		}
-		
-	    /**
-	     *  The label of the item.
-	     */
+
+		/**
+		 *  The label of the item.
+		 */
 		public function get label(): String {
 			return "Chrome";
 		}
 
-	    /**
-	     *  The icon for the item.
-	     */
+		/**
+		 *  The icon for the item.
+		 */
 		public function get icon(): Class {
 			return ComponentIcons.Chrome;
 		}
 
-	    /**
-	     *  The children of this item.
-	     */
+		/**
+		 *  The children of this item.
+		 */
 		public function get children(): Array {
 			return _children;
 		}
 
-	    /**
-	     *  The parent of the item.
-	     */
+		/**
+		 *  The parent of the item.
+		 */
 		public function get parent(): IComponentTreeItem {
-			return _parent;			
+			return _parent;
 		}
 
 		/**
@@ -63,12 +63,12 @@ package com.flexspy.imp {
 						} else {
 							return result;
 						}
-					} 
+					}
 				} else if (includeChrome && (item is ComponentTreeChrome)) {
 					var resultChrome: ComponentTreeItem = ComponentTreeChrome(item).getHitComponent(x, y, includeChrome);
 					if (resultChrome != null) {
 						return resultChrome;
-					} 
+					}
 				}
 			}
 			return borderResult;

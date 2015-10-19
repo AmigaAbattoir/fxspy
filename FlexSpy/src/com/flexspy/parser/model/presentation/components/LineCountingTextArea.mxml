@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!---
+FlexSpy 1.5
+
+<p>Code released under WTFPL [http://sam.zoy.org/wtfpl/]</p>
+@author Arnaud Pichery [http://coderpeon.ovh.org]
+@author Frédéric Thomas
+@author Christopher Pollati
+-->
 <mx:TextArea xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:text="flash.text.*">
 
-<mx:Script>
-	<![CDATA[
-		
-
-			private function init() : void
-			{
+	<mx:Script>
+		<![CDATA[
+			private function init() : void {
 				measuringTextField.styleSheet = styleSheet;
 			}
 
-			public function getCurrentLine () : int
-			{
+			public function getCurrentLine () : int {
 				var currentLine : int = measuringTextField.getLineIndexOfChar( selectionBeginIndex ) +1;
 				return currentLine;
 			}
-	
-			public function getNumLines () : int
-			{
-				var numLines : int = measuringTextField.numLines; 
+
+			public function getNumLines () : int {
+				var numLines : int = measuringTextField.numLines;
 				return numLines;
 			}
-	
+
 		]]>
 	</mx:Script>
-
-	<text:TextField id="measuringTextField" text="{ text }" 
-		height="{ height }" width="{ width }" wordWrap="true"/>
-	
+	<text:TextField id="measuringTextField" text="{ text }" height="{ height }" width="{ width }" wordWrap="true"/>
 </mx:TextArea>

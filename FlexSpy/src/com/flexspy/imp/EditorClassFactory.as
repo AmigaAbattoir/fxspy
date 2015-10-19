@@ -1,8 +1,10 @@
 /**
- * FlexSpy 1.2
- * 
+ * FlexSpy 1.5
+ *
  * <p>Code released under WTFPL [http://sam.zoy.org/wtfpl/]</p>
  * @author Arnaud Pichery [http://coderpeon.ovh.org]
+ * @author Frédéric Thomas
+ * @author Christopher Pollati
  */
 package com.flexspy.imp {
 
@@ -13,7 +15,7 @@ package com.flexspy.imp {
 	 */
 	public class EditorClassFactory implements IFactory {
 		private var _instance: *;
-		
+
 		public function newInstance(): * {
 			return _instance;
 		}

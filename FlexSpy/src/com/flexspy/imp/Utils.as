@@ -1,14 +1,16 @@
 /**
- * FlexSpy 1.2
- * 
+ * FlexSpy 1.5
+ *
  * <p>Code released under WTFPL [http://sam.zoy.org/wtfpl/]</p>
  * @author Arnaud Pichery [http://coderpeon.ovh.org]
+ * @author Frédéric Thomas
+ * @author Christopher Pollati
  */
 package com.flexspy.imp {
 
 	import flash.display.DisplayObject;
 	import flash.utils.getQualifiedClassName;
-	
+
 	import mx.core.UIComponent;
 	import mx.managers.SystemManager;
 	import mx.utils.StringUtil;
@@ -17,38 +19,38 @@ package com.flexspy.imp {
 	 * Various utilities function used by FlexSpy.
 	 */
 	public class Utils {
-        public static function toHexColor(n: Number): String {
-        	var result: String = n.toString(16);
-        	while (result.length < 6) {
-        		result = "0" + result;
-        	}
-        	return ("#" + result);
-        }
+		public static function toHexColor(n: Number): String {
+			var result: String = n.toString(16);
+			while (result.length < 6) {
+				result = "0" + result;
+			}
+			return ("#" + result);
+		}
 
-        public static function fromHexColor(str: String): Number {
-        	if (str == null || str == "") {
-        		return 0;
-        	}
-        	if (str.charAt(0) == "#") {
-                // Map "#77EE11" to 0x77EE11
-                return Number("0x" + str.slice(1));
-        	}
+		public static function fromHexColor(str: String): Number {
+			if (str == null || str == "") {
+				return 0;
+			}
+			if (str.charAt(0) == "#") {
+				// Map "#77EE11" to 0x77EE11
+				return Number("0x" + str.slice(1));
+			}
 			// Default
-           	return Number(str);
-        }
-        
-        public static function isSafeType(type: String): Boolean {
-        	// Base types
+			return Number(str);
+		}
+
+		public static function isSafeType(type: String): Boolean {
+			// Base types
 			if (type == "Number" || type == "String" || type == "Boolean" || type == "int" || type == "uint" || type == "Date")
 				return true;
-				
+
 			// Known types
 			if (type == "flash.geom::Rectangle" || type == "mx.core::EdgeMetrics")
 				return true;
-				
+
 			// Unknown types
 			return false;
-        }
+		}
 
 		public static function endsWith(str: String, suffix: String, caseSensitive: Boolean = true): Boolean {
 			if (suffix == null) {
@@ -67,7 +69,7 @@ package com.flexspy.imp {
 				return (str.substr(startIndex).toLowerCase() == suffix.toLowerCase());
 			}
 		}
-		
+
 		public static function getRoot(displayObject: DisplayObject): DisplayObject {
 			if (displayObject == null) {
 				return null;
@@ -86,11 +88,11 @@ package com.flexspy.imp {
 			}
 			return current;
 		}
-		
+
 		public static function formatDisplayObject(displayObject: DisplayObject, className: String): String {
 			if (displayObject == null)
 				return "";
-			
+
 			var item: String = className;
 			if (item.indexOf("::") >= 0) {
 				item = item.substr(2 + item.indexOf("::"));
@@ -105,7 +107,7 @@ package com.flexspy.imp {
 		}
 
 		public static function formatClass(item: Object): String {
-			var className: String = flash.utils.getQualifiedClassName(item);
+			var className: String = getQualifiedClassName(item);
 			if (className != null) {
 				var idx: int = className.indexOf("::");
 				if (idx > 0) {
@@ -114,7 +116,7 @@ package com.flexspy.imp {
 			} else {
 				className = String(item);
 			}
-			
+
 			// Embeded resource, the pattern is [Class]__embed_css_[source]_[item]_[number]
 			var EMBED_CSS: String = "__embed_css_";
 			idx = className.indexOf(EMBED_CSS);

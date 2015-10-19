@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!---
+FlexSpy 1.5
+
+<p>Code released under WTFPL [http://sam.zoy.org/wtfpl/]</p>
+@author Arnaud Pichery [http://coderpeon.ovh.org]
+@author Frédéric Thomas
+@author Christopher Pollati
+-->
 <mx:VDividedBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"
 				color="black"
 				label="Actionscript" xmlns:panels="com.flexspy.parser.view.panels.*" xmlns:view="com.flexspy.parser.view.*"
@@ -10,9 +18,9 @@
 			import com.flexspy.FlexSpy;
 			import com.flexspy.event.FlexSpyEvent;
 			import com.flexspy.parser.model.FlexTrampModelLocator;
-			
+
 			import mx.core.Application;
-			
+
 			private function onCreationComplete() : void{
 				FlexTrampModelLocator.getInstance().parser.addVariable("app", Application.application );
 				//register for flexspy events
@@ -21,10 +29,10 @@
 				FlexSpy.addEventListener(FlexSpyEvent.PROPERTY_SELECTED, handleFlexSpyEvent);
 				FlexSpy.addEventListener(FlexSpyEvent.VIEW_ITEM_SELECTED, handleFlexSpyEvent);
 			}
-			
+
 			private function handleFlexSpyEvent(event : FlexSpyEvent) : void{
 				if ( !wasPressingAlt(event.associatedEvent)) return;
-				
+
 				if ( event.type == FlexSpyEvent.PROPERTY_SELECTED){
 					FlexTrampModelLocator.getInstance().parser.addVariable( event.propertyName, event.propertyValue);
 					highlightComponentEffect.play([ event.associatedEvent.target ]);
@@ -33,11 +41,11 @@
 					highlightComponentEffect.play([ event.associatedEvent.target ]);
 				}
 			}
-			
+
 			private function wasPressingAlt(event : Event) : Boolean{
 				return event is MouseEvent && MouseEvent(event).altKey;
 			}
-			
+
 			private function get highlightComponentEffect(): Effect {
 				var glow: Glow = new Glow();
 				glow.color = 0xFFFF00;

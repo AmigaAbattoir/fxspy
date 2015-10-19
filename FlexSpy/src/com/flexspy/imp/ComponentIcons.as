@@ -1,17 +1,18 @@
 /**
- * FlexSpy 1.2
- * 
+ * FlexSpy 1.5
+ *
  * <p>Code released under WTFPL [http://sam.zoy.org/wtfpl/]</p>
  * @author Arnaud Pichery [http://coderpeon.ovh.org]
+ * @author Frédéric Thomas
+ * @author Christopher Pollati
  */
 package com.flexspy.imp {
-
 	/**
 	 * Icons representing the various UI components displayed in the
 	 * component tree
 	 */
 	public class ComponentIcons {
-		[Embed(source="../assets/components/Chrome.png")] 
+		[Embed(source="../assets/components/Chrome.png")]
 		public static var Chrome:Class;
 
 		[Embed(source="../assets/components/Accordion.png")]
@@ -41,16 +42,16 @@ package com.flexspy.imp {
 		[Embed(source="../assets/components/FormItem.png")]
 		public static var FormItem:Class;
 
-		[Embed(source="../assets/components/Grid.png")] 
+		[Embed(source="../assets/components/Grid.png")]
 		public static var Grid:Class;
-		
+
 		[Embed(source="../assets/components/HBox.png")]
 		public static var HBox:Class;
 
 		[Embed(source="../assets/components/HDividedBox.png")]
 		public static var HDividedBox:Class;
 
-		[Embed(source="../assets/components/Panel.png")] 
+		[Embed(source="../assets/components/Panel.png")]
 		public static var Panel:Class;
 
 		[Embed(source="../assets/components/TabNavigator.png")]

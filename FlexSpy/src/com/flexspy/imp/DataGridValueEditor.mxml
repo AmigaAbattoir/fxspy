@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!---
+	FlexSpy 1.5
+
+	<p>Code released under WTFPL [http://sam.zoy.org/wtfpl/]</p>
+	@author Arnaud Pichery [http://coderpeon.ovh.org]
+	@author Frédéric Thomas
+	@author Christopher Pollati
+-->
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
-	horizontalScrollPolicy="off"
-	verticalScrollPolicy="off"
-	creationComplete="onCreationComplete()"
-	>
+		   horizontalScrollPolicy="off"
+		   verticalScrollPolicy="off"
+		   creationComplete="onCreationComplete()"
+		   >
 	<mx:Script>
 		<![CDATA[
 			public function get editedValue(): * {
@@ -15,7 +23,7 @@
 					return textArea.text;
 				}
 			}
-			
+
 			private function onCreationComplete(): void {
 				var item: PropertyEditorItem = PropertyEditorItem(data);
 				if (item.value === undefined) { // Must use strict equality

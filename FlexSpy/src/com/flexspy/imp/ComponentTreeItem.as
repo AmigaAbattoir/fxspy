@@ -1,17 +1,18 @@
 /**
- * FlexSpy 1.2
- * 
+ * FlexSpy 1.5
+ *
  * <p>Code released under WTFPL [http://sam.zoy.org/wtfpl/]</p>
  * @author Arnaud Pichery [http://coderpeon.ovh.org]
+ * @author Frédéric Thomas
+ * @author Christopher Pollati
  */
 package com.flexspy.imp {
-
 	import flash.display.DisplayObject;
 	import flash.utils.getQualifiedClassName;
-	import mx.core.UIComponent;
-	import mx.core.IRawChildrenContainer;
+
 	import mx.core.IChildList;
-	import mx.utils.StringUtil;
+	import mx.core.IRawChildrenContainer;
+	import mx.core.UIComponent;
 
 	public class ComponentTreeItem implements IComponentTreeItem {
 		private var _displayObject: DisplayObject;
@@ -33,16 +34,16 @@ package com.flexspy.imp {
 			_parent = parent;
 		}
 
-	    /**
-	     *  The underlying DisplayObject represented by this item.
-	     */
+		/**
+		 *  The underlying DisplayObject represented by this item.
+		 */
 		public function get displayObject(): DisplayObject {
 			return _displayObject;
 		}
 
-	    /**
-	     *  The label of the item.
-	     */
+		/**
+		 *  The label of the item.
+		 */
 		public function get label(): String {
 			if (!_propertiesComputed) {
 				computeProperties();
@@ -50,9 +51,9 @@ package com.flexspy.imp {
 			return _label;
 		}
 
-	    /**
-	     *  The icon for the item.
-	     */
+		/**
+		 *  The icon for the item.
+		 */
 		public function get icon(): Class {
 			if (!_propertiesComputed) {
 				computeProperties();
@@ -60,9 +61,9 @@ package com.flexspy.imp {
 			return _icon;
 		}
 
-	    /**
-	     *  The children of this item.
-	     */
+		/**
+		 *  The children of this item.
+		 */
 		public function get children(): Array {
 			if (!_childrenComputed) {
 				_children = computeChildren();
@@ -70,12 +71,12 @@ package com.flexspy.imp {
 			}
 			return _children;
 		}
-		
-	    /**
-	     *  The parent of the item.
-	     */
+
+		/**
+		 *  The parent of the item.
+		 */
 		public function get parent(): IComponentTreeItem {
-			return _parent;			
+			return _parent;
 		}
 
 		/**
@@ -156,7 +157,7 @@ package com.flexspy.imp {
 				default: _icon = ComponentIcons.Default; break;
 			}
 		}
-		
+
 		/**
 		 * Computes the children of this item.
 		 */
@@ -164,13 +165,13 @@ package com.flexspy.imp {
 			var component: UIComponent = displayObject as UIComponent;
 			if (component == null)
 				return null; // Only UIComponents have children.
-		
-			var children: Array = new Array();
-			
+
+			var children: Array = [];
+
 			// Add the "standard" children
 			for (var i: int = 0; i < component.numChildren; i++) {
 				var child: DisplayObject = component.getChildAt(i);
-				
+
 				// Check that this child is not already present in the collection
 				if (child != null && !containsChild(children, child)) {
 					children.push(new ComponentTreeItem(child, this));
@@ -180,26 +181,26 @@ package com.flexspy.imp {
 			// Add the "Chrome" children
 			if (component is IRawChildrenContainer) {
 				var childList: IChildList = IRawChildrenContainer(component).rawChildren;
-				var chromeChildren: Array = new Array();
+				var chromeChildren: Array = [];
 				var chromeItem: ComponentTreeChrome = new ComponentTreeChrome(chromeChildren, this);
 
 				// Add the chrome children
 				for (var k: int = 0; k < childList.numChildren; k++) {
 					var kchild: DisplayObject = childList.getChildAt(k);
-					
+
 					// Check that this child is not already present in the collection
 					if (!containsChild(children, kchild) && kchild != null) {
 						chromeChildren.push(new ComponentTreeItem(kchild, chromeItem));
 					}
 				}
-				
+
 				if (chromeChildren.length > 0) {
 					children.push(chromeItem);
-				}				
+				}
 			}
 			return (children.length == 0) ? null : children;
 		}
-		
+
 		/**
 		 * Indicates whether the specified DisplayObject is present in the given children collection
 		 */
@@ -211,7 +212,7 @@ package com.flexspy.imp {
 			}
 			return false;
 		}
-		
+
 		/**
 		 * Gets the child component that intersects with the supplied stage coordinate
 		 */
@@ -222,12 +223,12 @@ package com.flexspy.imp {
 						var result: ComponentTreeItem = ComponentTreeItem(item).getHitComponent(x, y, includeChrome);
 						if (result != null) {
 							return result;
-						} 
+						}
 					} else if (includeChrome && (item is ComponentTreeChrome)) {
 						var resultChrome: ComponentTreeItem = ComponentTreeChrome(item).getHitComponent(x, y, includeChrome);
 						if (resultChrome != null) {
 							return resultChrome;
-						} 
+						}
 					}
 				}
 				// Not inside its children, return this component.
@@ -240,7 +241,7 @@ package com.flexspy.imp {
 		public function getItemByDisplayObject(displayObject: DisplayObject): IComponentTreeItem {
 			if (displayObject === _displayObject) {
 				return this;
-			} 
+			}
 			var result: IComponentTreeItem;
 			for each (var item: IComponentTreeItem in children) {
 				result = item.getItemByDisplayObject(displayObject);

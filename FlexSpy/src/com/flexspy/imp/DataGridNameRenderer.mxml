@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!---
+	FlexSpy 1.5
+
+	<p>Code released under WTFPL [http://sam.zoy.org/wtfpl/]</p>
+	@author Arnaud Pichery [http://coderpeon.ovh.org]
+	@author Frédéric Thomas
+	@author Christopher Pollati
+-->
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
 		   horizontalScrollPolicy="off"
 		   verticalScrollPolicy="off">
@@ -7,21 +15,12 @@
 			import com.flexspy.FlexSpy;
 			import com.flexspy.event.FlexSpyEvent;
 			import com.flexspy.FlexSpy_Internal;
-			
-			private function handleClick( event : MouseEvent ) : void
-			{
+
+			private function handleClick( event : MouseEvent ) : void {
 				var flexSpyEvent : FlexSpyEvent = new FlexSpyEvent(FlexSpyEvent.PROPERTY_SELECTED, event, null,data.value, data.displayName);
 				FlexSpy.FlexSpy_Internal::dispatchEvent(flexSpyEvent);
 			}
 		]]>
 	</mx:Script>
-	<mx:Label id="nameLabel"
-			  text="{data.displayName}"
-			  minWidth="0"
-			  left="2"
-			  top="0"
-			  right="2"
-			  bottom="0"
-			  click="handleClick(event)"
-			  />
+	<mx:Label id="nameLabel" text="{data.displayName}" minWidth="0" left="2" top="0" right="2" bottom="0" click="handleClick(event)"/>
 </mx:Canvas>

@@ -1,17 +1,17 @@
 /**
- * FlexSpy 1.2
- * 
+ * FlexSpy 1.5
+ *
  * <p>Code released under WTFPL [http://sam.zoy.org/wtfpl/]</p>
  * @author Arnaud Pichery [http://coderpeon.ovh.org]
+ * @author Frédéric Thomas
+ * @author Christopher Pollati
  */
 package com.flexspy.imp.metadata {
-
 	/**
 	 * Represent the content of a style metadata tag
 	 */
 	public class StyleMetadata {
-		
-		/** 
+		/**
 		 * Constructor
 		 */
 		public function StyleMetadata(xml: XML) {
@@ -21,7 +21,7 @@ package com.flexspy.imp.metadata {
 			format = xml.@format;
 			enumeration = xml.@enumeration;
 		}
-		
+
 		/** Specifies the name of the style. */
 		public var name: String;
 

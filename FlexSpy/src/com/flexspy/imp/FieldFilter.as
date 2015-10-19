@@ -1,20 +1,26 @@
-package com.flexspy.imp
-{
+/**
+ * FlexSpy 1.5
+ *
+ * <p>Code released under WTFPL [http://sam.zoy.org/wtfpl/]</p>
+ * @author Arnaud Pichery [http://coderpeon.ovh.org]
+ * @author Frédéric Thomas
+ * @author Christopher Pollati
+ */
+package com.flexspy.imp {
 	import com.flexspy.parser.util.StringUtil;
-	
+
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TextEvent;
 	import flash.net.SharedObject;
-	
+
 	import mx.collections.ArrayCollection;
 	import mx.containers.HBox;
 	import mx.controls.Button;
 	import mx.controls.ComboBox;
 	import mx.controls.Label;
 
-	public class FieldFilter extends HBox
-	{
+	public class FieldFilter extends HBox {
 		/**
 		 * A combobox that has a list of contents that can be modified
 		 * and has common filters in it
@@ -24,17 +30,15 @@ package com.flexspy.imp
 		private var add : Button;
 		private var tip : String = "seperate filter items with a space or comma, press add to store in your favourites list";
 		private var dataProvider : ArrayCollection;
-		
-		public function FieldFilter(soName : String, defaults : Array)
-		{
+
+		public function FieldFilter(soName : String, defaults : Array) {
 			defaultSO = SharedObject.getLocal(soName);
 			var items : Array = defaultSO.data.defaults == null ? defaults : defaultSO.data.defaults;
 			dataProvider = new ArrayCollection(items);
 		}
-		
-		
-		override protected function createChildren() : void
-		{
+
+
+		override protected function createChildren() : void {
 			super.createChildren();
 			var label : Label = new Label();
 			label.text = "Filter";
@@ -52,11 +56,11 @@ package com.flexspy.imp
 			add.label="add";
 			add.addEventListener(MouseEvent.CLICK, handleAdd);
 		}
-		
-		private function handleChange(event : Event) : void{
+
+		private function handleChange(event : Event) : void {
 			event.stopImmediatePropagation();
 			event.stopPropagation();
-			
+
 			var regextext :String = combo.text;
 			if ( StringUtil.trim(regextext)==""){
 				regextext =null;
@@ -65,11 +69,11 @@ package com.flexspy.imp
 				regextext = regextext.replace(/\ /g,"|");
 				regextext = "(" + regextext +")";
 			}
-			
+
 			dispatchEvent( new TextEvent("change",false,false,regextext));
 		}
-		
-		private function handleAdd(event :MouseEvent) : void{
+
+		private function handleAdd(event :MouseEvent) : void {
 			if ( event.altKey){
 				var index : int = dataProvider.getItemIndex(combo.text);
 				dataProvider.removeItemAt(index);
@@ -80,7 +84,7 @@ package com.flexspy.imp
 				}
 			}
 			defaultSO.data.defaults = ArrayCollection(dataProvider).toArray();
-			defaultSO.flush();			
+			defaultSO.flush();
 		}
 	}
 }

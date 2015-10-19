@@ -1,17 +1,18 @@
 /**
- * FlexSpy 1.2
- * 
+ * FlexSpy 1.5
+ *
  * <p>Code released under WTFPL [http://sam.zoy.org/wtfpl/]</p>
  * @author Arnaud Pichery [http://coderpeon.ovh.org]
+ * @author Frédéric Thomas
+ * @author Christopher Pollati
  */
 package com.flexspy.imp {
-	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
-	
+
 	import mx.containers.TitleWindow;
 	import mx.controls.Button;
 	import mx.controls.Label;
@@ -20,7 +21,7 @@ package com.flexspy.imp {
 	import mx.managers.CursorManager;
 	import mx.managers.CursorManagerPriority;
 	import mx.managers.PopUpManager;
-	
+
 	/**
 	 * Window to find a component using a dragable target
 	 */
@@ -30,27 +31,27 @@ package com.flexspy.imp {
 		public static var TARGET_ICON:Class;
 
 		public var treeWnd: ComponentTreeWnd;
-		
-		private static var DRAG_ALPHA: Number = 0.6;
 
-		// Members		
+		private static const DRAG_ALPHA: Number = 0.6;
+
+		// Members
 		private var _cursorId: int;
 		private var _componentItem: ComponentTreeItem;
 		private var _highlightComponentEffect: Effect;
 		private var _defaultAlpha: Number;
-		
+
 		// Components
 		private var dragButton: Button;
 		private var coordinatesLabel: Label;
 		private var componentLabel: Label;
 		private var highlightRectangle: HighlightRectangle;
-		
-	    /**
-	     * This method is not intented to be used. Use <code>show</code> method instead.
-	     */
+
+		/**
+		 * This method is not intented to be used. Use <code>show</code> method instead.
+		 */
 		public function FindWnd() {
 			super();
-			
+
 			// properties
 			this.layout = "absolute";
 			this.title = "Find Component";
@@ -67,7 +68,7 @@ package com.flexspy.imp {
 
 		override protected function createChildren(): void {
 			super.createChildren();
-			
+
 			if (dragButton == null) {
 				dragButton = new Button();
 				dragButton.x = 10;
@@ -85,9 +86,9 @@ package com.flexspy.imp {
 				componentLabel.setStyle("left", 10);
 				componentLabel.setStyle("right", 10);
 				componentLabel.y = 52;
-				this.addChild(componentLabel);				
+				this.addChild(componentLabel);
 			}
-			
+
 			if (coordinatesLabel == null) {
 				coordinatesLabel = new Label();
 				coordinatesLabel.setStyle("left", 10);
@@ -105,7 +106,7 @@ package com.flexspy.imp {
 
 		private function closeWindow(event: Event = null): void {
 			PopUpManager.removePopUp(this);
-			treeWnd.visible = true;	
+			treeWnd.visible = true;
 		}
 
 		private function onMouseDown(event: MouseEvent): void {
@@ -114,17 +115,17 @@ package com.flexspy.imp {
 			_cursorId = CursorManager.setCursor(TARGET_ICON, CursorManagerPriority.HIGH, -9, -9);
 			dragButton.setStyle("icon", null);
 			dragButton.enabled = false;
-			
+
 			highlightRectangle = new HighlightRectangle();
 			highlightRectangle.setActualSize(50, 50);
 			highlightRectangle.move(10, 50);
 			var i: int = systemManager.getChildIndex(this);
 			systemManager.addChildAt(highlightRectangle, i);
-			
+
 			_defaultAlpha = this.alpha;
 			this.alpha = DRAG_ALPHA;
 		}
-		
+
 		private function onCaptureMouseUp(event: MouseEvent): void {
 			// Stop spying
 			this.alpha = _defaultAlpha;
@@ -142,11 +143,11 @@ package com.flexspy.imp {
 
 		private function onCaptureMouseMove(event: MouseEvent): void {
 			coordinatesLabel.text = "(" + event.stageX + ", " + event.stageY + ")";
-	
+
 			var componentItem: ComponentTreeItem = treeWnd.getComponentItemAt(event.stageX, event.stageY);
 			if (_componentItem != componentItem) {
 				_componentItem = componentItem;
-				
+
 				if (_componentItem != null) {
 					highlightComponent(componentItem);
 					componentLabel.text = componentItem.label;
@@ -155,31 +156,31 @@ package com.flexspy.imp {
 				}
 			}
 		}
-		
+
 		private function highlightComponent(componentItem: ComponentTreeItem): void {
-				highlightComponentEffect.end();
-				if (_componentItem.displayObject != null) {
-					highlightComponentEffect.target = _componentItem.displayObject;
-					highlightComponentEffect.play();
-					
-					var componentForSize: DisplayObject = getComponentForSize(_componentItem);
-					if (componentForSize != null) {
-						var coord: Point = componentForSize.localToGlobal(new Point(0,0));
-						highlightRectangle.visible = true;
-						highlightRectangle.width = componentForSize.width;
-						highlightRectangle.height = componentForSize.height;
-						highlightRectangle.x = coord.x;
-						highlightRectangle.y = coord.y;
-						highlightRectangle.invalidateSize();
-						highlightRectangle.invalidateDisplayList();
-					} else {
-						highlightRectangle.visible = false;
-					}
+			highlightComponentEffect.end();
+			if (_componentItem.displayObject != null) {
+				highlightComponentEffect.target = _componentItem.displayObject;
+				highlightComponentEffect.play();
+
+				var componentForSize: DisplayObject = getComponentForSize(_componentItem);
+				if (componentForSize != null) {
+					var coord: Point = componentForSize.localToGlobal(new Point(0,0));
+					highlightRectangle.visible = true;
+					highlightRectangle.width = componentForSize.width;
+					highlightRectangle.height = componentForSize.height;
+					highlightRectangle.x = coord.x;
+					highlightRectangle.y = coord.y;
+					highlightRectangle.invalidateSize();
+					highlightRectangle.invalidateDisplayList();
+				} else {
+					highlightRectangle.visible = false;
 				}
-			
+			}
+
 		}
-		
-		private function getComponentForSize(componentItem: ComponentTreeItem): DisplayObject {
+
+		private static function getComponentForSize(componentItem: ComponentTreeItem): DisplayObject {
 			var item: ComponentTreeItem = componentItem;
 			while (item != null && (item.displayObject == null || item.displayObject.width == 0 || item.displayObject.height == 0)) {
 				var itemParent: IComponentTreeItem = item.parent;
@@ -190,7 +191,7 @@ package com.flexspy.imp {
 			}
 			return (item == null) ? null : item.displayObject;
 		}
-		
+
 		private function get highlightComponentEffect(): Effect {
 			if (_highlightComponentEffect == null) {
 				var glow: Glow = new Glow();
