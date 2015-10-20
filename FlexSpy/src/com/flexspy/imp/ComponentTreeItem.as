@@ -8,6 +8,8 @@
  */
 package com.flexspy.imp {
 	import flash.display.DisplayObject;
+	import flash.utils.describeType;
+	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 
 	import mx.core.IChildList;
@@ -88,76 +90,23 @@ package com.flexspy.imp {
 			var className: String = flash.utils.getQualifiedClassName(displayObject);
 			_label = Utils.formatDisplayObject(displayObject, className);
 
-			// Compute icon
-			switch (className) {
-				case "mx.containers::Accordion": _icon = ComponentIcons.Accordion; break;
-				case "mx.containers::ApplicationControlBar": _icon = ComponentIcons.ApplicationControlBar; break;
-				case "mx.containers::Box": _icon = ComponentIcons.Box; break;
-				case "mx.containers::Canvas": _icon = ComponentIcons.Canvas; break;
-				case "mx.containers::ControlBar": _icon = ComponentIcons.ControlBar; break;
-				case "mx.containers::DividedBox": _icon = ComponentIcons.DividedBox; break;
-				case "mx.containers::Form": _icon = ComponentIcons.Form; break;
-				case "mx.containers::FormHeading": _icon = ComponentIcons.FormHeading; break;
-				case "mx.containers::FormItem": _icon = ComponentIcons.FormItem; break;
-				case "mx.containers::Grid.": _icon = ComponentIcons.Grid; break;
-				case "mx.containers::HBox": _icon = ComponentIcons.HBox; break;
-				case "mx.containers::HDividedBox": _icon = ComponentIcons.HDividedBox; break;
-				case "mx.containers::Panel": _icon = ComponentIcons.Panel; break;
-				case "mx.containers::TabNavigator": _icon = ComponentIcons.TabNavigator; break;
-				case "mx.containers::Tile": _icon = ComponentIcons.Tile; break;
-				case "mx.containers::TitleWindow": _icon = ComponentIcons.TitleWindow; break;
-				case "mx.containers::VBox": _icon = ComponentIcons.VBox; break;
-				case "mx.containers::VDividedBox": _icon = ComponentIcons.VDividedBox; break;
-				case "mx.containers::ViewStack": _icon = ComponentIcons.ViewStack; break;
-				case "mx.charts::AreaChart": _icon = ComponentIcons.AreaChart; break;
-				case "mx.charts::BarChart": _icon = ComponentIcons.BarChart; break;
-				case "mx.charts::BubbleChart": _icon = ComponentIcons.BubbleChart; break;
-				case "mx.charts::CandlestickChart": _icon = ComponentIcons.CandlestickChart; break;
-				case "mx.charts::ColumnChart": _icon = ComponentIcons.ColumnChart; break;
-				case "mx.charts::HLOCChart": _icon = ComponentIcons.HLOCChart; break;
-				case "mx.charts::Legend": _icon = ComponentIcons.Legend; break;
-				case "mx.charts::LineChart": _icon = ComponentIcons.LineChart; break;
-				case "mx.charts::PieChart": _icon = ComponentIcons.PieChart; break;
-				case "mx.charts::PlotChart": _icon = ComponentIcons.PlotChart; break;
-				case "mx.controls::Button": _icon = ComponentIcons.Button; break;
-				case "mx.controls::CheckBox": _icon = ComponentIcons.CheckBox; break;
-				case "mx.controls::ColorPicker": _icon = ComponentIcons.ColorPicker; break;
-				case "mx.controls::ComboBox": _icon = ComponentIcons.ComboBox; break;
-				case "mx.controls::DataGrid": _icon = ComponentIcons.DataGrid; break;
-				case "mx.controls::DateChooser": _icon = ComponentIcons.DateChooser; break;
-				case "mx.controls::DateField": _icon = ComponentIcons.DateField; break;
-				case "mx.controls::HorizontalList": _icon = ComponentIcons.HorizontalList; break;
-				case "mx.controls::HRule": _icon = ComponentIcons.HRule; break;
-				case "mx.controls::HScrollBar": _icon = ComponentIcons.HScrollBar; break;
-				case "mx.controls::HSlider": _icon = ComponentIcons.HSlider; break;
-				case "mx.controls::Image": _icon = ComponentIcons.Image; break;
-				case "mx.controls::Label": _icon = ComponentIcons.Label; break;
-				case "mx.controls::LinkBar": _icon = ComponentIcons.LinkBar; break;
-				case "mx.controls::LinkButton": _icon = ComponentIcons.LinkButton; break;
-				case "mx.controls::List": _icon = ComponentIcons.List; break;
-				case "mx.controls::Menu": _icon = ComponentIcons.Menu; break;
-				case "mx.controls::MenuBar": _icon = ComponentIcons.MenuBar; break;
-				case "mx.controls::NumericStepper": _icon = ComponentIcons.NumericStepper; break;
-				case "mx.controls::ProgressBar": _icon = ComponentIcons.ProgressBar; break;
-				case "mx.controls::RadioButton": _icon = ComponentIcons.RadioButton; break;
-				case "mx.controls::RadioButtonGroup": _icon = ComponentIcons.RadioButtonGroup; break;
-				case "mx.controls::RichTextEditor": _icon = ComponentIcons.RichTextEditor; break;
-				case "mx.controls::Spacer": _icon = ComponentIcons.Spacer; break;
-				case "mx.controls::SWFLoader": _icon = ComponentIcons.SWFLoader; break;
-				case "mx.controls::TabBar": _icon = ComponentIcons.TabBar; break;
-				case "mx.controls::Text": _icon = ComponentIcons.Text; break;
-				case "mx.controls::TextArea": _icon = ComponentIcons.TextArea; break;
-				case "mx.controls::TextInput": _icon = ComponentIcons.TextInput; break;
-				case "mx.controls::TileList": _icon = ComponentIcons.TileList; break;
-				case "mx.controls::Tree": _icon = ComponentIcons.Tree; break;
-				case "mx.controls::VideoDisplay": _icon = ComponentIcons.VideoDisplay; break;
-				case "mx.controls::VRule": _icon = ComponentIcons.VRule; break;
-				case "mx.controls::VScrollBar": _icon = ComponentIcons.VScrollBar; break;
-				case "mx.controls::VSlider": _icon = ComponentIcons.VSlider; break;
-				default: _icon = ComponentIcons.Default; break;
+			// Figure IconFile from metadata
+			try {
+				var dt:XML = describeType(displayObject);
+				var iconFile:String =  dt.metadata.(attribute("name") == "IconFile").arg.@value;
+
+				if(dt.name) {
+					if(iconFile=="") {
+						_icon = ComponentIcons.Default;
+					} else {
+						/*** @todo See if there's a way to actaully access the IconFile without the Component Icons class... */
+						_icon = getDefinitionByName("com.flexspy.imp::ComponentIcons_" + iconFile.substring(0,iconFile.lastIndexOf("."))) as Class;
+					}
+				}
+			} catch(error:Error) {
+				_icon = ComponentIcons.Default;
 			}
 		}
-
 		/**
 		 * Computes the children of this item.
 		 */

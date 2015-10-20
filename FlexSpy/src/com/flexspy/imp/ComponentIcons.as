@@ -10,28 +10,108 @@ package com.flexspy.imp {
 	/**
 	 * Icons representing the various UI components displayed in the
 	 * component tree
+	 *
+	 * All icons from Flex Halo and Spark components, as well as AIR components
 	 */
 	public class ComponentIcons {
-		[Embed(source="../assets/components/Chrome.png")]
-		public static var Chrome:Class;
-
 		[Embed(source="../assets/components/Accordion.png")]
 		public static var Accordion:Class;
+
+		[Embed(source="../assets/components/AdvancedDataGrid.png")]
+		public static var AdvancedDataGrid:Class;
 
 		[Embed(source="../assets/components/ApplicationControlBar.png")]
 		public static var ApplicationControlBar:Class;
 
+		[Embed(source="../assets/components/AreaChart.png")]
+		public static var AreaChart:Class;
+
+		[Embed(source="../assets/components/BarChart.png")]
+		public static var BarChart:Class;
+
+		[Embed(source="../assets/components/BorderContainer.png")]
+		public static var BorderContainer:Class;
+
 		[Embed(source="../assets/components/Box.png")]
 		public static var Box:Class;
+
+		[Embed(source="../assets/components/BubbleChart.png")]
+		public static var BubbleChart:Class;
+
+		[Embed(source="../assets/components/BusyIndicator.png")]
+		public static var BusyIndicator:Class;
+
+		[Embed(source="../assets/components/Button.png")]
+		public static var Button:Class;
+
+		[Embed(source="../assets/components/ButtonBar.png")]
+		public static var ButtonBar:Class;
+
+		[Embed(source="../assets/components/Callout.png")]
+		public static var CallOut:Class;
+
+		[Embed(source="../assets/components/CandlestickChart.png")]
+		public static var CandlestickChart:Class;
 
 		[Embed(source="../assets/components/Canvas.png")]
 		public static var Canvas:Class;
 
+		[Embed(source="../assets/components/CheckBox.png")]
+		public static var CheckBox:Class;
+
+		[Embed(source="../assets/components/Chrome.png")]
+		public static var Chrome:Class;
+
+		[Embed(source="../assets/components/ColorPicker.png")]
+		public static var ColorPicker:Class;
+
+		[Embed(source="../assets/components/ColumnChart.png")]
+		public static var ColumnChart:Class;
+
+		[Embed(source="../assets/components/ComboBox.png")]
+		public static var ComboBox:Class;
+
 		[Embed(source="../assets/components/ControlBar.png")]
 		public static var ControlBar:Class;
 
+		[Embed(source="../assets/components/DataGrid.png")]
+		public static var DataGrid:Class;
+
+		[Embed(source="../assets/components/DataGroup.png")]
+		public static var DataGroup:Class;
+
+		[Embed(source="../assets/components/DateChooser.png")]
+		public static var DateChooser:Class;
+
+		[Embed(source="../assets/components/DateField.png")]
+		public static var DateField:Class;
+
+		[Embed(source="../assets/components/DateSpinner.png")]
+		public static var DateSpinner:Class;
+
+		[Embed(source="../assets/components/DropDownList.png")]
+		public static var DropDownList:Class;
+
+		[Embed(source="../assets/components/FileSystemComboBox.png")]
+		public static var FileSystemComboBox:Class;
+
+		[Embed(source="../assets/components/FileSystemDataGrid.png")]
+		public static var FileSystemDataGrid:Class;
+
+		[Embed(source="../assets/components/FileSystemHistoryButton.png")]
+		public static var FileSystemHistoryButton:Class;
+
+		[Embed(source="../assets/components/FileSystemList.png")]
+		public static var FileSystemList:Class;
+
+		[Embed(source="../assets/components/FileSystemTree.png")]
+		public static var FileSystemTree:Class;
+
 		[Embed(source="../assets/components/DividedBox.png")]
 		public static var DividedBox:Class;
+
+		[Embed(source="../assets/components/Tag.png")]
+		public static var Default:Class;
 
 		[Embed(source="../assets/components/Form.png")]
 		public static var Form:Class;
@@ -45,23 +125,164 @@ package com.flexspy.imp {
 		[Embed(source="../assets/components/Grid.png")]
 		public static var Grid:Class;
 
+		[Embed(source="../assets/components/GridColumnHeaderGroup.png")]
+		public static var GridColumnHeaderGroup:Class;
+
+		[Embed(source="../assets/components/Group.png")]
+		public static var Group:Class;
+
 		[Embed(source="../assets/components/HBox.png")]
 		public static var HBox:Class;
 
 		[Embed(source="../assets/components/HDividedBox.png")]
 		public static var HDividedBox:Class;
 
+		[Embed(source="../assets/components/HGroup.png")]
+		public static var HGroup:Class;
+
+		[Embed(source="../assets/components/HLOCChart.png")]
+		public static var HLOCChart:Class;
+
+		[Embed(source="../assets/components/HorizontalList.png")]
+		public static var HorizontalList:Class;
+
+		[Embed(source="../assets/components/HRule.png")]
+		public static var HRule:Class;
+
+		[Embed(source="../assets/components/HScrollBar.png")]
+		public static var HScrollBar:Class;
+
+		[Embed(source="../assets/components/HSlider.png")]
+		public static var HSlider:Class;
+
+		[Embed(source="../assets/components/HTML.png")]
+		public static var HTML:Class;
+
+		[Embed(source="../assets/components/Image.png")]
+		public static var Image:Class;
+
+		[Embed(source="../assets/components/Label.png")]
+		public static var Label:Class;
+
+		[Embed(source="../assets/components/Legend.png")]
+		public static var Legend:Class;
+
+		[Embed(source="../assets/components/LineChart.png")]
+		public static var LineChart:Class;
+
+		[Embed(source="../assets/components/LinkBar.png")]
+		public static var LinkBar:Class;
+
+		[Embed(source="../assets/components/LinkButton.png")]
+		public static var LinkButton:Class;
+
+		[Embed(source="../assets/components/List.png")]
+		public static var List:Class;
+
+		[Embed(source="../assets/components/Menu.png")]
+		public static var Menu:Class;
+
+		[Embed(source="../assets/components/MenuBar.png")]
+		public static var MenuBar:Class;
+
+		[Embed(source="../assets/components/ModuleLoader.png")]
+		public static var ModuleLoader:Class;
+
+		[Embed(source="../assets/components/NumericStepper.png")]
+		public static var NumericStepper:Class;
+
 		[Embed(source="../assets/components/Panel.png")]
 		public static var Panel:Class;
+
+		[Embed(source="../assets/components/PieChart.png")]
+		public static var PieChart:Class;
+
+		[Embed(source="../assets/components/PlotChart.png")]
+		public static var PlotChart:Class;
+
+		[Embed(source="../assets/components/ProgressBar.png")]
+		public static var ProgressBar:Class;
+
+		[Embed(source="../assets/components/RadioButton.png")]
+		public static var RadioButton:Class;
+
+		[Embed(source="../assets/components/RadioButtonGroup.png")]
+		public static var RadioButtonGroup:Class;
+
+		[Embed(source="../assets/components/Repeater.png")]
+		public static var Repeater:Class;
+
+		[Embed(source="../assets/components/RichEditableText.png")]
+		public static var RichEditableText:Class;
+
+		[Embed(source="../assets/components/RichText.png")]
+		public static var RichText:Class;
+
+		[Embed(source="../assets/components/RichTextEditor.png")]
+		public static var RichTextEditor:Class;
+
+		[Embed(source="../assets/components/Scroller.png")]
+		public static var Scroller:Class;
+
+		[Embed(source="../assets/components/SkinnableContainer.png")]
+		public static var SkinnableContainer:Class;
+
+		[Embed(source="../assets/components/SkinnableDataContainer.png")]
+		public static var SkinnableDataContainer:Class;
+
+		[Embed(source="../assets/components/Spacer.png")]
+		public static var Spacer:Class;
+
+		[Embed(source="../assets/components/Spinner.png")]
+		public static var Spinner:Class;
+
+		[Embed(source="../assets/components/SpinnerList.png")]
+		public static var SpinnerList:Class;
+
+		[Embed(source="../assets/components/SplitViewNavigator.png")]
+		public static var SplitViewNavigator:Class;
+
+		[Embed(source="../assets/components/SwatchPanel.png")]
+		public static var SwatchPanel:Class;
+
+		[Embed(source="../assets/components/SWFLoader.png")]
+		public static var SWFLoader:Class;
+
+		[Embed(source="../assets/components/TabBar.png")]
+		public static var TabBar:Class;
 
 		[Embed(source="../assets/components/TabNavigator.png")]
 		public static var TabNavigator:Class;
 
+		[Embed(source="../assets/components/Text.png")]
+		public static var Text:Class;
+
+		[Embed(source="../assets/components/TextArea.png")]
+		public static var TextArea:Class;
+
+		[Embed(source="../assets/components/TextInput.png")]
+		public static var TextInput:Class;
+
 		[Embed(source="../assets/components/Tile.png")]
 		public static var Tile:Class;
 
+		[Embed(source="../assets/components/TileGroup.png")]
+		public static var TileGroup:Class;
+
+		[Embed(source="../assets/components/TileList.png")]
+		public static var TileList:Class;
+
 		[Embed(source="../assets/components/TitleWindow.png")]
 		public static var TitleWindow:Class;
+
+		[Embed(source="../assets/components/ToggleButton.png")]
+		public static var ToggleButton:Class;
+
+		[Embed(source="../assets/components/ToggleSwitch.png")]
+		public static var ToggleSwitch:Class;
+
+		[Embed(source="../assets/components/Tree.png")]
+		public static var Tree:Class;
 
 		[Embed(source="../assets/components/VBox.png")]
 		public static var VBox:Class;
@@ -69,145 +290,31 @@ package com.flexspy.imp {
 		[Embed(source="../assets/components/VDividedBox.png")]
 		public static var VDividedBox:Class;
 
+		[Embed(source="../assets/components/VGroup.png")]
+		public static var VGroup:Class;
+
+		[Embed(source="../assets/components/ViewNavigator.png")]
+		public static var ViewNavigator:Class;
+
+		[Embed(source="../assets/components/VideoDisplay.png")]
+		public static var VideoDisplay:Class;
+
+		[Embed(source="../assets/components/VideoPlayer.png")]
+		public static var VideoPlayer:Class;
+
 		[Embed(source="../assets/components/ViewStack.png")]
 		public static var ViewStack:Class;
 
-		[Embed(source="../assets/components/AreaChart.png")]
-		public static var AreaChart: Class;
-
-		[Embed(source="../assets/components/BarChart.png")]
-		public static var BarChart: Class;
-
-		[Embed(source="../assets/components/BubbleChart.png")]
-		public static var BubbleChart: Class;
-
-		[Embed(source="../assets/components/CandlestickChart.png")]
-		public static var CandlestickChart: Class;
-
-		[Embed(source="../assets/components/ColumnChart.png")]
-		public static var ColumnChart: Class;
-
-		[Embed(source="../assets/components/HLOCChart.png")]
-		public static var HLOCChart: Class;
-
-		[Embed(source="../assets/components/Legend.png")]
-		public static var Legend: Class;
-
-		[Embed(source="../assets/components/LineChart.png")]
-		public static var LineChart: Class;
-
-		[Embed(source="../assets/components/PieChart.png")]
-		public static var PieChart: Class;
-
-		[Embed(source="../assets/components/PlotChart.png")]
-		public static var PlotChart: Class;
-
-		[Embed(source="../assets/components/Button.png")]
-		public static var Button: Class;
-
-		[Embed(source="../assets/components/CheckBox.png")]
-		public static var CheckBox: Class;
-
-		[Embed(source="../assets/components/ColorPicker.png")]
-		public static var ColorPicker: Class;
-
-		[Embed(source="../assets/components/ComboBox.png")]
-		public static var ComboBox: Class;
-
-		[Embed(source="../assets/components/DataGrid.png")]
-		public static var DataGrid: Class;
-
-		[Embed(source="../assets/components/DateChooser.png")]
-		public static var DateChooser: Class;
-
-		[Embed(source="../assets/components/DateField.png")]
-		public static var DateField: Class;
-
-		[Embed(source="../assets/components/HorizontalList.png")]
-		public static var HorizontalList: Class;
-
-		[Embed(source="../assets/components/HRule.png")]
-		public static var HRule: Class;
-
-		[Embed(source="../assets/components/HScrollBar.png")]
-		public static var HScrollBar: Class;
-
-		[Embed(source="../assets/components/HSlider.png")]
-		public static var HSlider: Class;
-
-		[Embed(source="../assets/components/Image.png")]
-		public static var Image: Class;
-
-		[Embed(source="../assets/components/Label.png")]
-		public static var Label: Class;
-
-		[Embed(source="../assets/components/LinkBar.png")]
-		public static var LinkBar: Class;
-
-		[Embed(source="../assets/components/LinkButton.png")]
-		public static var LinkButton: Class;
-
-		[Embed(source="../assets/components/List.png")]
-		public static var List: Class;
-
-		[Embed(source="../assets/components/Menu.png")]
-		public static var Menu: Class;
-
-		[Embed(source="../assets/components/MenuBar.png")]
-		public static var MenuBar: Class;
-
-		[Embed(source="../assets/components/NumericStepper.png")]
-		public static var NumericStepper: Class;
-
-		[Embed(source="../assets/components/ProgressBar.png")]
-		public static var ProgressBar: Class;
-
-		[Embed(source="../assets/components/RadioButton.png")]
-		public static var RadioButton: Class;
-
-		[Embed(source="../assets/components/RadioButtonGroup.png")]
-		public static var RadioButtonGroup: Class;
-
-		[Embed(source="../assets/components/RichTextEditor.png")]
-		public static var RichTextEditor: Class;
-
-		[Embed(source="../assets/components/Spacer.png")]
-		public static var Spacer: Class;
-
-		[Embed(source="../assets/components/SWFLoader.png")]
-		public static var SWFLoader: Class;
-
-		[Embed(source="../assets/components/TabBar.png")]
-		public static var TabBar: Class;
-
-		[Embed(source="../assets/components/Text.png")]
-		public static var Text: Class;
-
-		[Embed(source="../assets/components/TextArea.png")]
-		public static var TextArea: Class;
-
-		[Embed(source="../assets/components/TextInput.png")]
-		public static var TextInput: Class;
-
-		[Embed(source="../assets/components/TileList.png")]
-		public static var TileList: Class;
-
-		[Embed(source="../assets/components/Tree.png")]
-		public static var Tree: Class;
-
-		[Embed(source="../assets/components/VideoDisplay.png")]
-		public static var VideoDisplay: Class;
-
 		[Embed(source="../assets/components/VRule.png")]
-		public static var VRule: Class;
+		public static var VRule:Class;
 
 		[Embed(source="../assets/components/VScrollBar.png")]
-		public static var VScrollBar: Class;
+		public static var VScrollBar:Class;
 
 		[Embed(source="../assets/components/VSlider.png")]
-		public static var VSlider: Class;
+		public static var VSlider:Class;
 
-		[Embed(source="../assets/components/Tag.png")]
-		public static var Default:Class;
+		[Embed(source="../assets/components/Window.png")]
+		public static var Window:Class;
 	}
 }
